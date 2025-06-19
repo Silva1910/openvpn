@@ -1,4 +1,4 @@
-import mysql.connector
+import pymysql
 import smtplib
 import string
 import random
@@ -16,7 +16,8 @@ DB_CONFIG = {
     'host': '192.168.0.155',
     'user': 'vpnpanel_user',
     'password': 'securepassword123',
-    'database': 'vpnpanel'
+    'database': 'vpnpanel',
+    'cursorclass': pymysql.cursors.DictCursor
 }
 
 # Configurações do email do sistema
@@ -36,8 +37,8 @@ def get_user_email(username):
     """Busca o email do usuário no banco de dados."""
     try:
         logger.info(f"Buscando informações do usuário: {username}")
-        conn = mysql.connector.connect(**DB_CONFIG)
-        cursor = conn.cursor(dictionary=True)
+        conn = pymysql.connect(**DB_CONFIG)
+        cursor = conn.cursor()
         
         cursor.execute("SELECT id, email, username FROM users WHERE username = %s AND active = 1", (username,))
         user = cursor.fetchone()
@@ -106,7 +107,7 @@ def update_user_password(user_id, temp_password):
     """Atualiza a senha do usuário no banco de dados."""
     try:
         logger.info(f"Atualizando senha para usuário ID: {user_id}")
-        conn = mysql.connector.connect(**DB_CONFIG)
+        conn = pymysql.connect(**DB_CONFIG)
         cursor = conn.cursor()
         
         # Hash MD5 da senha temporária
@@ -128,22 +129,18 @@ def update_user_password(user_id, temp_password):
 def reset_password(username):
     """Processo completo de redefinição de senha."""
     try:
-        # Busca o usuário
         user = get_user_email(username)
         if not user:
             logger.warning("Usuário não encontrado ou inativo")
             return {"success": False, "message": "Usuário não encontrado ou inativo"}
         
-        # Gera senha temporária
         temp_password = generate_temp_password()
         logger.info("Senha temporária gerada")
         
-        # Atualiza a senha no banco
         if not update_user_password(user['id'], temp_password):
             logger.error("Falha ao atualizar senha no banco")
             return {"success": False, "message": "Erro ao atualizar senha"}
         
-        # Envia o email
         if not send_temp_password_email(user['email'], user['username'], temp_password):
             logger.error("Falha ao enviar email")
             return {"success": False, "message": "Erro ao enviar email"}
@@ -167,4 +164,4 @@ if __name__ == "__main__":
         sys.exit(0)
     else:
         logger.error(result["message"])
-        sys.exit(1) 
+        sys.exit(1)
