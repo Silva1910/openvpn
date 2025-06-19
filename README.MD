@@ -1,4 +1,3 @@
----
 ## Configuração do Ambiente com Máquinas Virtuais Debian
 
 Para configurar o ambiente, utilizaremos **quatro máquinas virtuais** baseadas em imagens **Debian Linux**. A criação de cada máquina se baseia em práticas específicas do "Manual do Debian Linux", conforme detalhado abaixo:
@@ -118,7 +117,7 @@ Para garantir que o script `gateway.sh` seja executado automaticamente na inicia
 2.  **Insira o conteúdo no arquivo:**
     Dentro do arquivo `gateway.service`, adicione o seguinte conteúdo:
 
-    [](/imgs/image2.png)
+    ![](/imgs/image2.png)
 
 3.  **Habilite e inicie o serviço (comandos adicionais após a criação do arquivo):**
     Após salvar o arquivo `gateway.service`, você precisará recarregar o daemon do `systemd`, habilitar o serviço para iniciar no boot e, opcionalmente, iniciá-lo imediatamente:
