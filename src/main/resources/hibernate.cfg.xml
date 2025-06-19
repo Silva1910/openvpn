@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.mariadb.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mariadb://192.168.0.155:3306/vpnpanel?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true</property>
+        <property name="connection.username">vpnpanel_user</property>
+        <property name="connection.password">securepassword123</property>
+        
+        <!-- JDBC connection pool settings -->
+        <property name="connection.pool_size">5</property>
+        
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MariaDBDialect</property>
+        
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+        
+        <!-- Disable the second-level cache -->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+        
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Enable debug logging -->
+        <property name="hibernate.generate_statistics">true</property>
+        <property name="hibernate.jdbc.batch_size">0</property>
+        
+        <!-- Names the annotated entity class -->
+        <mapping class="com.vpnpanel.model.User"/>
+        <mapping class="com.vpnpanel.model.VPNAccess"/>
+        <mapping class="com.vpnpanel.model.PasswordResetToken"/>
+        <mapping class="com.vpnpanel.model.Settings"/>
+    </session-factory>
+</hibernate-configuration>

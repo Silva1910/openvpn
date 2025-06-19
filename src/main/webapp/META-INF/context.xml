@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- SMTP Configuration -->
+    <Parameter name="smtp.host" value="smtp.gmail.com" override="false"/>
+    <Parameter name="smtp.port" value="587" override="false"/>
+    <Parameter name="smtp.username" value="your.email@gmail.com" override="false"/>
+    <Parameter name="smtp.password" value="your-app-specific-password" override="false"/>
+</Context> 
