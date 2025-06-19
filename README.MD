@@ -1,20 +1,5 @@
 ## Configuração do Ambiente com Máquinas Virtuais Debian
 
-Para configurar o ambiente, utilizaremos **quatro máquinas virtuais** baseadas em imagens **Debian Linux**. A criação de cada máquina se baseia em práticas específicas do "Manual do Debian Linux", conforme detalhado abaixo:
-
-* **OpenVPN Server**: Configuraremos esta máquina seguindo as instruções do **Capítulo 28** do "Manual do Debian Linux".
-* **Firewall**: Esta máquina será configurada com base nas práticas do **Capítulo 16** do "Manual do Debian Linux".
-* **Tomcat**: Para o servidor Tomcat, utilizaremos as diretrizes do **Capítulo 17** do "Manual do Debian Linux". Além disso, será necessário instalar o Python e o pip com os seguintes comandos:
-
-    ```bash
-    sudo apt install python3
-    sudo apt install python3-pip
-    pip install pymysql
-    ```
-
----
-## Configuração do Ambiente com Máquinas Virtuais Debian
-
 Para configurar o ambiente, utilizaremos **cinco máquinas virtuais** baseadas em imagens **Debian Linux**. A criação de cada máquina se baseia em práticas específicas do "Manual do Debian Linux", conforme detalhado abaixo:
 
 * **OpenVPN Server**: Configuraremos esta máquina seguindo as instruções do **Capítulo 28** do "Manual do Debian Linux".
